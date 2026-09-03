@@ -1,0 +1,37 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+namespace: data-sync-production
+
+helmGlobals:
+  chartHome: ../../../helm/charts
+
+helmCharts:
+  - name: data-sync
+    releaseName: data-sync-production
+    namespace: data-sync-production
+    valuesFile: values.production.yaml
+
+patches:
+  - target:
+      group: apps
+      version: v1
+      kind: Deployment
+      name: data-sync-production
+    patch: |-
+      apiVersion: apps/v1
+      kind: Deployment
+      metadata:
+        name: data-sync-production
+      spec:
+        template:
+          metadata:
+            annotations:
+              SECRET_CHECKSUM: "manual-hash-override-v1"
+          spec:
+            topologySpreadConstraints:
+              - maxSkew: 1
+                topologyKey: topology.kubernetes.io/zone
+                whenUnsatisfiable: DoNotSchedule
+                labelSelector:
+                  matchLabels:
+                    app.kubernetes.io/name: data-sync

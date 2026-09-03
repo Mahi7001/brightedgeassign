@@ -1,0 +1,40 @@
+replicaCount: 3
+
+image:
+  repository: 986293906729.dkr.ecr.ap-south-1.amazonaws.com/data-sync
+  pullPolicy: IfNotPresent
+  tag: "v1.0.0"
+
+config:
+  appEnv: "production"
+  redisHost: "redis-master.data-sync-production.svc.cluster.local"
+  redisPort: "6379"
+  logLevel: "INFO"
+  workers: "4"
+  maxConnections: "100"
+
+secrets:
+  redisPassword: "prod-high-entropy-redis-password"
+
+resources:
+  requests:
+    cpu: 500m
+    memory: 512Mi
+  limits:
+    cpu: 1000m
+    memory: 1Gi
+
+autoscaling:
+  enabled: true
+  minReplicas: 3
+  maxReplicas: 20
+  targetCPUUtilizationPercentage: 70
+
+podDisruptionBudget:
+  enabled: true
+  minAvailable: 1
+
+serviceMonitor:
+  enabled: true
+  releaseLabel: "kube-prometheus-stack"
+  interval: "30s"

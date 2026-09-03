@@ -1,0 +1,17 @@
+{{- if .Values.serviceMonitor.enabled }}
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  name: {{ include "data-sync.fullname" . }}
+  labels:
+    {{- include "data-sync.labels" . | nindent 4 }}
+    release: {{ .Values.serviceMonitor.releaseLabel | default "kube-prometheus-stack" }}
+spec:
+  selector:
+    matchLabels:
+      {{- include "data-sync.selectorLabels" . | nindent 6 }}
+  endpoints:
+    - port: http
+      path: /metrics
+      interval: {{ .Values.serviceMonitor.interval | default "30s" }}
+{{- end }}
