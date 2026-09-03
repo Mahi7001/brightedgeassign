@@ -10,7 +10,7 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/Mahi7001/poceks.git
+    repoURL: https://github.com/Mahi7001/brightedgeassign.git
     targetRevision: brightedge
     path: part1/standard/datasync/production
   destination:
