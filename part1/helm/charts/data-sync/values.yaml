@@ -11,7 +11,7 @@ fullnameOverride: ""
 podAnnotations: {}
 
 config:
-  appEnv: "staging"
+  appEnv: "dev"
   redisHost: "redis-master.data-sync.svc.cluster.local"
   redisPort: "6379"
   logLevel: "INFO"
@@ -19,7 +19,7 @@ config:
   maxConnections: "50"
 
 secrets:
-  redisPassword: "devpassword"
+  redisPassword: "mahesh@brightedge"
 
 service:
   type: ClusterIP
