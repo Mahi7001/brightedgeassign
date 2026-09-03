@@ -12,7 +12,7 @@ podAnnotations: {}
 
 config:
   appEnv: "staging"
-  redisHost: "redis-master.data-sync-staging.svc.cluster.local"
+  redisHost: "redis-master.data-sync.svc.cluster.local"
   redisPort: "6379"
   logLevel: "INFO"
   workers: "2"
