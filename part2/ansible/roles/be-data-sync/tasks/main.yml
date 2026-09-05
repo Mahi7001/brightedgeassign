@@ -17,6 +17,7 @@
 - name: Install pip
   ansible.builtin.command:
     cmd: python3.9 -m ensurepip
+  changed_when: false
   tags:
     - install
 
