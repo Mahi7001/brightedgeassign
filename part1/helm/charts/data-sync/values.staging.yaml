@@ -30,5 +30,19 @@ resources:
     cpu: 500m
     memory: 512Mi
 
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
+
+terminationGracePeriodSeconds: 30
+
 autoscaling:
   enabled: false

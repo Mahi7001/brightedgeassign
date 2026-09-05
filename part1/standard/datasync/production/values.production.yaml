@@ -30,6 +30,20 @@ resources:
     cpu: 1000m
     memory: 1Gi
 
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
+
+terminationGracePeriodSeconds: 30
+
 autoscaling:
   enabled: true
   minReplicas: 3

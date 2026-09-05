@@ -38,6 +38,20 @@ resources:
   limits:
     cpu: 250m
     memory: 256Mi
+    
+securityContext:
+  runAsNonRoot: true
+  allowPrivilegeEscalation: false
+  readOnlyRootFilesystem: true
+  capabilities:
+    drop:
+      - ALL
+
+podSecurityContext:
+  seccompProfile:
+    type: RuntimeDefault
+
+terminationGracePeriodSeconds: 30
 
 probes:
   liveness:
