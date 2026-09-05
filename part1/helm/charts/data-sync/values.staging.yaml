@@ -7,7 +7,7 @@ image:
 
 config:
   appEnv: "staging"
-  redisHost: "redis-master.data-sync-staging.svc.cluster.local"
+  redisHost: "redis-staging-master.data-sync-staging.svc.cluster.local"
   redisPort: "6379"
   logLevel: "INFO"
   workers: "2"
