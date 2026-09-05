@@ -19,7 +19,13 @@ config:
   maxConnections: "50"
 
 secrets:
-  redisPassword: "mahesh@brightedge"
+  redisPassword: ""
+
+externalSecret:
+  enabled: true
+  secretStoreName: aws-secretsmanager
+  secretStoreKind: ClusterSecretStore
+  remoteSecretKey: data-sync/redis
 
 service:
   type: ClusterIP

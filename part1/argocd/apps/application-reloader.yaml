@@ -1,0 +1,36 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: reloader
+  namespace: argocd
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+
+spec:
+  project: default
+
+  sources:
+    - repoURL: https://stakater.github.io/Reloader
+      chart: reloader
+      targetRevision: 1.*
+      helm:
+        valueFiles:
+          - $values/part1/reloader/values.yaml
+
+    - repoURL: https://github.com/Mahi7001/brightedgeassign.git
+      targetRevision: brightedge
+      ref: values
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: reloader
+
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
+
+    syncOptions:
+      - CreateNamespace=true

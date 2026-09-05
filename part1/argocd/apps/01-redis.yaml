@@ -24,7 +24,7 @@ spec:
           repository: bitnamilegacy/redis
           tag: "latest"
         auth:
-          password: "mahesh@brightedge"
+          password: "redisdev"
         master:
           persistence:
             enabled: false

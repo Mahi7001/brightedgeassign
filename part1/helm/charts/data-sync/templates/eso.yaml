@@ -1,0 +1,25 @@
+{{- if .Values.externalSecret.enabled }}
+apiVersion: external-secrets.io/v1
+kind: ExternalSecret
+metadata:
+  name: {{ include "data-sync.fullname" . }}-secret
+  labels:
+    {{- include "data-sync.labels" . | nindent 4 }}
+spec:
+  refreshPolicy: Periodic
+  refreshInterval: 1h
+
+  secretStoreRef:
+    name: {{ .Values.externalSecret.secretStoreName }}
+    kind: {{ .Values.externalSecret.secretStoreKind }}
+
+  target:
+    name: {{ include "data-sync.fullname" . }}-secret
+    creationPolicy: Owner
+
+  data:
+    - secretKey: REDIS_PASSWORD
+      remoteRef:
+        key: {{ .Values.externalSecret.remoteSecretKey | quote }}
+        property: REDIS_PASSWORD
+{{- end }}

@@ -14,7 +14,13 @@ config:
   maxConnections: "100"
 
 secrets:
-  redisPassword: "prod-high-entropy-redis-password"
+  redisPassword: ""
+
+externalSecret:
+  enabled: true
+  secretStoreName: aws-secretsmanager
+  secretStoreKind: ClusterSecretStore
+  remoteSecretKey: data-sync/production/redis
 
 resources:
   requests:
