@@ -78,7 +78,6 @@ The deployment therefore uses:
 
 * small application images
 * explicit resource requests
-* readiness checks
 * startup checks
 * pre-existing cluster capacity / node autoscaling
 
@@ -98,10 +97,7 @@ HPA increases replicas
       |
       v
 Kubernetes schedules new pods
-      |
-      v
-Startup probe passes
-      |
+      |      |
       v
 Readiness probe passes
       |
@@ -332,10 +328,7 @@ The readiness probe ensures the pod is only added to service traffic after it is
 
 ```text
 New Pod
-   |
-   v
-Startup Probe
-   |
+   |   |
    v
 Application initialization
    |
