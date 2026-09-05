@@ -187,7 +187,7 @@ This is an intentional trade-off for availability.
 
 ---
 
-## 7. Startup, Readiness and Liveness Probes
+## 7. Readiness and Liveness Probes
 
 ### Decision
 
