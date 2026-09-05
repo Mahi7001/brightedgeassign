@@ -45,7 +45,7 @@
 
 - name: Install Python dependencies
   ansible.builtin.pip:
-    requirements: "{{ data_sync_app_dir }}/requirements.txt"
+    requirements:  "{{ data_sync_app_dir }}/part1/app/requirements.txt"
     virtualenv: "{{ data_sync_venv_dir }}"
   tags:
     - install
