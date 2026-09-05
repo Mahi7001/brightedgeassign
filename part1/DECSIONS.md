@@ -191,11 +191,7 @@ This is an intentional trade-off for availability.
 
 ### Decision
 
-Use all three Kubernetes probe types.
-
-### Startup Probe
-
-The startup probe provides additional time for the application to initialize.
+Use Kubernetes probe types.
 
 ### Readiness Probe
 
