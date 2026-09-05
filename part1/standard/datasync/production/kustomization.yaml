@@ -1,9 +1,11 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 
+helmGlobals:
+  chartHome: ../../../helm/charts
+
 helmCharts:
   - name: data-sync
-    path: ../../../helm/charts/data-sync
     releaseName: data-sync
     valuesFile: values.production.yaml
 
