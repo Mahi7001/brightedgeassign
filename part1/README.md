@@ -34,7 +34,7 @@ part1/
 │               ├── deployment.yaml
 │               ├── service.yaml
 │               ├── configmap.yaml
-│               ├── eso.yaml
+│               ├── external-secret-operator.yaml
 │               ├── hpa.yaml
 │               ├── pdb.yaml
 │               ├── servicemonitor.yaml
