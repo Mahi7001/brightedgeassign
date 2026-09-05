@@ -13,7 +13,6 @@ This part implements a production-oriented deployment setup for the `data-sync` 
 * Stakater Reloader
 * Prometheus / ServiceMonitor
 * Metrics Server
-* Ansible
 
 The implementation focuses on secure configuration, controlled deployments, autoscaling, observability, secret management, and production workload placement.
 
