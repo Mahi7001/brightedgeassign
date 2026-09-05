@@ -1,0 +1,10 @@
+---
+- name: Deploy data-sync service
+  hosts: service
+  become: true
+
+  roles:
+    - role: be-data-sync
+      tags:
+        - install
+        - deploy

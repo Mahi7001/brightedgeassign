@@ -1,0 +1,19 @@
+[Unit]
+Description=Data Sync Service
+After=network.target
+
+[Service]
+Type=simple
+
+WorkingDirectory={{ data_sync_app_dir }}
+
+Environment="APP_ENV={{ data_sync_app_env }}"
+Environment="REDIS_HOST={{ data_sync_redis_host }}"
+Environment="LOG_LEVEL={{ data_sync_log_level }}"
+
+ExecStart={{ data_sync_venv_dir }}/bin/python -m data_sync
+
+Restart=on-failure
+
+[Install]
+WantedBy=multi-user.target

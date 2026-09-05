@@ -1,0 +1,11 @@
+---
+data_sync_app_env: "staging"
+data_sync_redis_host: "redis-master.data-sync.svc.cluster.local"
+data_sync_log_level: "INFO"
+
+data_sync_repo_url: "https://github.com/example/data-sync.git"
+data_sync_repo_version: "main"
+
+data_sync_app_dir: "/srv/data-sync"
+data_sync_venv_dir: "/srv/data-sync/venv"
+data_sync_service_name: "data-sync"

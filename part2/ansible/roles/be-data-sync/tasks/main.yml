@@ -1,0 +1,69 @@
+---
+- name: Ensure role runs only on service hosts
+  ansible.builtin.assert:
+    that:
+      - be_role | default('') == 'service'
+    fail_msg: "be-data-sync must run only on hosts where be_role == 'service'."
+  tags:
+    - always
+
+- name: Install Python 3.9 and pip
+  ansible.builtin.yum:
+    name:
+      - python39
+      - python39-pip
+    state: present
+  tags:
+    - install
+
+- name: Install Git
+  ansible.builtin.yum:
+    name: git
+    state: present
+  tags:
+    - install
+
+- name: Clone or update data-sync repository
+  ansible.builtin.git:
+    repo: "{{ data_sync_repo_url }}"
+    dest: "{{ data_sync_app_dir }}"
+    version: "{{ data_sync_repo_version }}"
+    update: true
+  tags:
+    - deploy
+
+- name: Create Python virtual environment
+  ansible.builtin.command:
+    cmd: "python3.9 -m venv {{ data_sync_venv_dir }}"
+    creates: "{{ data_sync_venv_dir }}/bin/activate"
+  tags:
+    - install
+
+- name: Install Python dependencies
+  ansible.builtin.pip:
+    requirements: "{{ data_sync_app_dir }}/requirements.txt"
+    virtualenv: "{{ data_sync_venv_dir }}"
+  tags:
+    - install
+    - deploy
+
+- name: Deploy systemd unit
+  ansible.builtin.template:
+    src: data-sync.service.j2
+    dest: "/etc/systemd/system/{{ data_sync_service_name }}.service"
+    owner: root
+    group: root
+    mode: "0644"
+  notify:
+    - Restart data-sync
+  tags:
+    - deploy
+
+- name: Ensure data-sync service is enabled and running
+  ansible.builtin.systemd:
+    name: "{{ data_sync_service_name }}"
+    enabled: true
+    state: started
+    daemon_reload: true
+  tags:
+    - deploy
