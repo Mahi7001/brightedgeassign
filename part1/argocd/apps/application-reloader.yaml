@@ -12,16 +12,16 @@ spec:
   project: default
 
   sources:
-    - repoURL: https://stakater.github.io/Reloader
-      chart: reloader
-      targetRevision: 1.*
-      helm:
-        valueFiles:
-          - $values/part1/reloader/values.yaml
+  - repoURL: https://stakater.github.io/stakater-charts
+    chart: reloader
+    targetRevision: 2.2.16
+    helm:
+      valueFiles:
+        - $values/part1/reloader/values.yaml
 
-    - repoURL: https://github.com/Mahi7001/brightedgeassign.git
-      targetRevision: brightedge
-      ref: values
+  - repoURL: https://github.com/Mahi7001/brightedgeassign.git
+    targetRevision: brightedge
+    ref: values
 
   destination:
     server: https://kubernetes.default.svc
