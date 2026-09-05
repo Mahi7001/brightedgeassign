@@ -69,13 +69,6 @@ spec:
             - secretRef:
                 name: {{ include "data-sync.fullname" . }}-secret
           
-          startupProbe:
-            httpGet:
-            path: /health
-            port: http
-            periodSeconds: 5
-            timeoutSeconds: 3
-            failureThreshold: 30
 
           livenessProbe:
             httpGet:
