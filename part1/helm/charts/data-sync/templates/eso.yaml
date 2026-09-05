@@ -7,7 +7,7 @@ metadata:
     {{- include "data-sync.labels" . | nindent 4 }}
 spec:
   refreshPolicy: Periodic
-  refreshInterval: 1h
+  refreshInterval: 1m
 
   secretStoreRef:
     name: {{ .Values.externalSecret.secretStoreName }}
