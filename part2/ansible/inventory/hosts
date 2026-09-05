@@ -1,0 +1,2 @@
+[service]
+localhost ansible_connection=local be_role=service
