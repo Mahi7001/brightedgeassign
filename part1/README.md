@@ -201,13 +201,10 @@ The Deployment also defines resource requests and limits to provide predictable 
 
 The application exposes `/health`.
 
-Three probe mechanisms are used:
+Two probe mechanisms are used:
 
-* Startup probe
 * Readiness probe
 * Liveness probe
-
-The startup probe prevents liveness checks from restarting the container while the application is still starting.
 
 Readiness controls whether a pod receives traffic.
 
