@@ -30,7 +30,6 @@ part1/
 │       └── data-sync/
 │           ├── Chart.yaml
 │           ├── values.yaml
-│           ├── values.schema.json
 │           └── templates/
 │               ├── deployment.yaml
 │               ├── service.yaml
