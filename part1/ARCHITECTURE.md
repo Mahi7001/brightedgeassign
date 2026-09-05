@@ -235,19 +235,6 @@ The service exposes:
 
 The Deployment uses:
 
-### Startup Probe
-
-Protects applications during initial startup.
-
-```text
-Application starts
-       |
-       v
-Startup probe
-       |
-       ├── Failure → container gets more startup time
-       |
-       └── Success → readiness/liveness become active
 ```
 
 ### Readiness Probe
@@ -478,7 +465,6 @@ Kubernetes applies changes
 RollingUpdate
     |
     ├── New pod starts
-    ├── Startup probe passes
     ├── Readiness probe passes
     └── Old pod is terminated
 ```
