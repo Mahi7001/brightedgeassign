@@ -48,7 +48,7 @@ part1/
 ├── argocd/
 │   └── apps/
 │
-├── eso/
+├── external-secret-operator/
 │
 └── reloader/
 ```
