@@ -310,7 +310,7 @@ helm template data-sync \
 ### Kustomize
 
 ```bash
-kubectl kustomize part1/standard/datasync/production
+kubectl kustomize part1/standard/datasync/production --enable-helm
 ```
 
 ### Kubernetes
